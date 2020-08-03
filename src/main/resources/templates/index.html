@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+    <meta charset="utf-8"/>
+
+    <link rel="stylesheet" type="text/css" th:href="@{css/default.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{css/bootstrap.css}">
+    <script th:src="@{https://code.jquery.com/jquery-2.1.4.min.js}"></script>
+    <script th:src="@{js/main.js}" type="text/javascript" charset="utf-8"></script>
+</head>
+<body style="background: url('img/snow-tree.jpg');background-size: 100%; background-repeat:no-repeat;">
+
+
+<div class="container-panel">
+
+    <div class="title-icon">
+        <img th:src="@{img/people-color.jpg}" alt="">
+    </div>
+
+    <!--<%&#45;&#45;登录form表单&#45;&#45;%>-->
+    <form id="login" action="/login" method="post" style="display: inline;"
+          onsubmit="return submitLogin(checkIdContent('loginIdText','loginIdInfo'),checkPswContent('loginPswText','loginPswInfo'),'login')">
+        <!--<%&#45;&#45用户名&#45;&#45;%>-->
+        <div class="form-control-input">
+            <span class="span-icon"><img src="img/people.jpg" alt="" class="img-icon"></span>
+
+            <input id="loginIdText" type="text" placeholder="请输入账号" class="form-control-1" name="userno"
+                   aria-invalid="false">
+        </div>
+        <!--<%&#45;&#45;提示错误信息&#45;&#45;%>-->
+        <span id="loginIdInfo" class="info">Info</span>s
+
+        <!--<%&#45;&#45;输入密码&#45;&#45;%>-->
+        <div class="form-control-input">
+            <span class="span-icon"><img src="img/key.jpg" alt="" class="img-icon"></span>
+
+            <input onclick="checkIdContent('loginIdText','loginIdInfo')" id="loginPswText" type="password"
+                   placeholder="请输入密码" class="form-control-1" name="password" aria-invalid="false">
+        </div>
+        <!--<%&#45;&#45;提示密码错误信息&#45;&#45;%>-->
+        <span id="loginPswInfo" class="info">Info</span>
+
+        <div th:text="${loginError}"></div>
+        <!--<%&#45;&#45;提交&#45;&#45;%>-->
+        <div class="center">
+            <button type="submit" class="btn-by-gx" title="Login">login</button>
+        </div>
+
+        <!--<%&#45;&#45;注册按钮&#45;&#45;%>-->
+        <div>
+            <button type="reset" onclick="enableForm('register', 'login')" class="btn-hidden-left" value="">CREATE
+                ACCOUNT
+            </button>
+        </div>
+
+    </form>
+
+
+    <!--<%&#45;&#45;注册form表单&#45;&#45;%>-->
+    <form id="register" action="home.jsp" method="post" style="display: none;"
+          onsubmit="return submitRegister(checkIdContent('registerIdText','registerIdInfo'),checkPswContent('registerPswText','registerPswInfo'),checkRepeatPswContent('registerPswText','registerRepeatPswText','registerRepeatPswInfo'), 'register')">
+
+        <!--<%&#45;&#45;输入用户名&#45;&#45;%>-->
+        <div class="form-control-input">
+            <span class="span-icon"><img src="img/people-color.jpg" alt="" class="img-icon"></span>
+
+            <input id="registerIdText" type="text" placeholder="请输入账号" class="form-control-1" name="userno"
+                   aria-invalid="false"  onclick="return isExistUser('registerIdText')">
+        </div>
+        <!--<%&#45;&#45;提示用户名错误信息&#45;&#45;%>-->
+        <span id="registerIdInfo" class="info">Info</span>
+
+        <!--<%&#45;&#45;输入密码&#45;&#45;%>-->
+        <div class="form-control-input">
+            <span class="span-icon"><img src="img/key.jpg" alt="" class="img-icon"></span>
+
+            <input id="registerPswText" onclick="checkIdContent('registerIdText','registerIdInfo')" type="password"
+                   placeholder="请输入密码" class="form-control-1" name="password" aria-invalid="false">
+        </div>
+        <!--<%&#45;&#45;提示密码错误信息&#45;&#45;%>-->
+        <span id="registerPswInfo" class="info">Info</span>
+        <!--<%&#45;&#45;在此输入密码&#45;&#45;%>-->
+        <div class="form-control-input">
+            <span class="span-icon"><img src="img/key.jpg" alt="" class="img-icon"></span>
+
+            <input onclick="checkPswContent('registerPswText','registerPswInfo');checkIdContent('registerIdText','registerIdInfo')"
+                   id="registerRepeatPswText" type="password" placeholder="请再次输入密码" class="form-control-1" name="userno"
+                   aria-invalid="false">
+        </div>
+        <!--<%&#45;&#45;提示二次密码错误信息&#45;&#45;%>-->
+        <span id="registerRepeatPswInfo" class="info">Info</span>
+        <!--<%&#45;&#45;提交按钮&#45;&#45;%>-->
+        <div class="center">
+            <button type="submit" class="btn-by-gx" title="Login">Create Account</button>
+        </div>
+
+        <div>
+            <button type="reset" onclick="enableForm('login', 'register')" class="btn-hidden-left">ALREADY HAVE
+                ACCOUNT?
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
