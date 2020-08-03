@@ -18,6 +18,7 @@
         <img th:src="@{img/people-color.jpg}" alt="">
     </div>
 
+    <div th:text="${registerState}"></div>
     <!--<%&#45;&#45;登录form表单&#45;&#45;%>-->
     <form id="login" action="/login" method="post" style="display: inline;"
           onsubmit="return submitLogin(checkIdContent('loginIdText','loginIdInfo'),checkPswContent('loginPswText','loginPswInfo'),'login')">
@@ -58,7 +59,7 @@
 
 
     <!--<%&#45;&#45;注册form表单&#45;&#45;%>-->
-    <form id="register" action="home.jsp" method="post" style="display: none;"
+    <form id="register" action="/register" method="post" style="display: none;"
           onsubmit="return submitRegister(checkIdContent('registerIdText','registerIdInfo'),checkPswContent('registerPswText','registerPswInfo'),checkRepeatPswContent('registerPswText','registerRepeatPswText','registerRepeatPswInfo'), 'register')">
 
         <!--<%&#45;&#45;输入用户名&#45;&#45;%>-->
@@ -85,7 +86,7 @@
             <span class="span-icon"><img src="img/key.jpg" alt="" class="img-icon"></span>
 
             <input onclick="checkPswContent('registerPswText','registerPswInfo');checkIdContent('registerIdText','registerIdInfo')"
-                   id="registerRepeatPswText" type="password" placeholder="请再次输入密码" class="form-control-1" name="userno"
+                   id="registerRepeatPswText" type="password" placeholder="请再次输入密码" class="form-control-1" name="verifyPassword"
                    aria-invalid="false">
         </div>
         <!--<%&#45;&#45;提示二次密码错误信息&#45;&#45;%>-->
