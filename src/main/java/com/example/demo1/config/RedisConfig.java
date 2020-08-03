@@ -20,7 +20,6 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import java.lang.reflect.Method;
 
 @Configuration
-//@EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Override
@@ -57,13 +56,10 @@ public class RedisConfig extends CachingConfigurerSupport {
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        方法过时
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         om.activateDefaultTyping(LaissezFaireSubTypeValidator.instance , ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
         jackson2JsonRedisSerializer.setObjectMapper(om);
         template.setValueSerializer(jackson2JsonRedisSerializer);
         template.afterPropertiesSet();
         return template;
     }
-
 }

@@ -19,7 +19,7 @@ public interface UserMapper {
     /**
      * 增加用户，输入id,password，权限为一般用户，返回更改条数
      */
-    @Insert("INSERT TO user(id,password,authority) VALUES(#{id},#{password})")
+    @Insert("INSERT TO user(id,password,authority) VALUES(#{id},#{password},authority)")
     int add(user user);
 
     /**
@@ -36,7 +36,7 @@ public interface UserMapper {
 
     /**
      * 输入id，返回用户信息
-     * */
+     */
     @Select("SELECT * FROM user WHERE id=#{id}")
     user queryById(@Param("id") String id);
 
@@ -45,5 +45,7 @@ public interface UserMapper {
      */
     @Select("SELECT * FROM user")
     List<user> queryAllUser();
+
+
 
 }
